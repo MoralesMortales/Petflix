@@ -1,15 +1,18 @@
-import axios from "axios"
+import axios from 'axios';
 
-const ref = "https://pokeapi.co/api/v2/pokemon"
+const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 
 export const pokepokemon = axios.create({
-    baseURL: "https://pokeapi.co/api/v2/pokemon"    
-})
+    baseURL
+});
 
-export const fetchPokemon = async () => {
-    const res= await pokepokemon.get('/');
-    console.log(res.data); 
-}
-    
-        
-       
+export const showinfo = async () => {
+    try {
+        const res = await pokepokemon.get('/');
+        console.log(res.data);
+        return res.data;
+    } catch (error) {
+        console.error('Error fetching Pokemon data:', error);
+        throw error;
+    }
+};
